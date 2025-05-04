@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Флэш карта</title>
+</head>
+
+<style>
+    .myHorisontal{
+    display:flex;
+    flex-wrap:wrap;    /* Переносит на следующую строку */
+    }
+
+    .myQuestion{
+    margin:10px;
+    font-size:20px;
+    padding:10px;
+    background-color: aliceblue;
+    border-radius:10px;
+    border:2px solid blue;
+    width: 300px;
+    height:100px
+    }
+
+    .otvet{
+    background-color:yellow;
+    position:relative;
+    top:100px;
+    right:250px;
+    margin-bottom:50px;
+    font-size:20px;
+    padding:20px;
+    border-radius:10px;
+    }
+
+
+</style>
+
+
+<body>
+<h1>Флэш карта. Ответьте на вопросы</h1>
+
+<div class = "myHorisontal">
+
+    {% for card in cards %}
+      <form method="POST">
+          <input type="hidden" name="card_id" value="{{card.id}}" >
+          <button type="submit" class="myQuestion">
+              {{card.question}}
+          </button>
+      </form>
+    <br>
+      {% if show_id == card.id %}
+        <p class="otvet">{{card.answer}}</p>
+
+
+      {% endif %}
+    {% endfor %}
+
+</div>
+</body>
+</html>
